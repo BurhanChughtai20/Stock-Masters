@@ -33,30 +33,35 @@ export type SeoContentType =
 
 export interface SiteConfig {
   name: string;
-
   shortName: string;
 
   description: string;
-
   slogan?: string;
 
   url: string;
 
   logo: string;
-
   defaultImage: string;
 
   locale: string;
-
   country: string;
-
   language: string;
-
   timezone: string;
 
   email?: string;
-
   phone?: string;
+
+  /**
+   * Business Positioning
+   */
+  primaryPosition?: string;
+
+  secondaryPositions?: readonly string[];
+
+  /**
+   * Main Business Services
+   */
+  services?: readonly string[];
 
   keywords: readonly string[];
 
@@ -68,7 +73,6 @@ export interface SiteConfig {
 
   category?: string;
 }
-
 /* -------------------------------------------------------------------------- */
 /*                              Page SEO Config                               */
 /* -------------------------------------------------------------------------- */
