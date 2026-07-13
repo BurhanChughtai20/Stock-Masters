@@ -137,11 +137,11 @@ export interface RobotsSEO {
 
     noimageindex?: boolean;
 
-    maxImagePreview?: "none" | "standard" | "large";
+    "max-image-preview"?: "none" | "standard" | "large";
 
-    maxSnippet?: number;
+    "max-snippet"?: number;
 
-    maxVideoPreview?: number;
+    "max-video-preview"?: number;
   };
 }
 

@@ -12,10 +12,10 @@ export const ROBOTS_SEO: Readonly<RobotsSEO> = {
 
     noimageindex: false,
 
-    maxImagePreview: "large",
+    "max-image-preview": "large",
 
-    maxSnippet: -1,
+    "max-snippet": -1,
 
-    maxVideoPreview: -1,
+    "max-video-preview": -1,
   },
 } as const;
