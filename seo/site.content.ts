@@ -1,4 +1,9 @@
+import { SITE_ASSETS } from "@/constant/site.assets";
+import { SITE_DOMAIN } from "@/constant/site.domain";
 import { SiteConfig } from "@/types/seo.ts";
+
+const BASE_URL = `${SITE_DOMAIN.protocol}://${SITE_DOMAIN.host}`;
+
 
 export const SITE_CONTENT: Readonly<SiteConfig> = {
   name: "Stock Masters",
@@ -11,11 +16,11 @@ export const SITE_CONTENT: Readonly<SiteConfig> = {
   slogan:
     "Grow Your Money With Discipline, Not Stock Advice.",
 
-  url: "https://stockmasters.pk",
+  url: BASE_URL,
 
-  logo: "/image/Stock Masters (Logo).png",
+  logo: SITE_ASSETS.logo,
 
-  defaultImage: "/images/seo/cover.webp",
+  defaultImage: SITE_ASSETS.defaultSeoImage,
 
   locale: "en_PK",
 

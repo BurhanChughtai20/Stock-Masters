@@ -1,24 +1,5 @@
-import type { Metadata } from "next";
-
-/* -------------------------------------------------------------------------- */
-/*                                  Basics                                    */
-/* -------------------------------------------------------------------------- */
-
-export type SeoPageType =
-  | "website"
-  | "homepage"
-  | "about"
-  | "service"
-  | "course"
-  | "blog"
-  | "article"
-  | "faq"
-  | "testimonial"
-  | "contact"
-  | "pricing"
-  | "legal"
-  | "dashboard"
-  | "other";
+import { SeoPageType } from "@/constant/seo.page.type";
+import { RoutePath } from "@/seo";
 
 export type SeoContentType =
   | "website"
@@ -77,14 +58,12 @@ export interface SiteConfig {
 /*                              Page SEO Config                               */
 /* -------------------------------------------------------------------------- */
 
-export interface PageSEO {
+export interface PageSEOData {
   title: string;
 
   description: string;
 
-  path: string;
-
-  type: SeoPageType;
+  pageType: SeoPageType;
 
   keywords?: readonly string[];
 
@@ -94,27 +73,10 @@ export interface PageSEO {
 
   noFollow?: boolean;
 
-  publishedTime?: string;
-
-  modifiedTime?: string;
-
-  alternates?: AlternateLanguage[];
-
-  breadcrumb?: BreadcrumbItem[];
-
-  openGraph?: OpenGraphSEO;
-
-  twitter?: TwitterSEO;
-
-  robots?: RobotsSEO;
+  schema?: readonly JsonLdSchema[];
 
   aeo?: AEOConfig;
-
-  schema?: JsonLdSchema[];
-
-  metadata?: Metadata;
 }
-
 /* -------------------------------------------------------------------------- */
 /*                               Open Graph                                   */
 /* -------------------------------------------------------------------------- */
@@ -202,57 +164,33 @@ export interface BreadcrumbItem {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                            Alternate Languages                             */
-/* -------------------------------------------------------------------------- */
-
-export interface AlternateLanguage {
-  locale: string;
-
-  url: string;
-}
-
-/* -------------------------------------------------------------------------- */
-/*                              Verification                                  */
-/* -------------------------------------------------------------------------- */
-
-export interface VerificationSEO {
-  google?: string;
-
-  bing?: string;
-
-  yandex?: string;
-
-  yahoo?: string;
-
-  pinterest?: string;
-
-  facebook?: string;
-}
-
-/* -------------------------------------------------------------------------- */
 /*                                 AEO                                        */
 /* -------------------------------------------------------------------------- */
 
+
 export interface AEOConfig {
+  /** Key entities/concepts on this page */
   entities?: readonly string[];
-
+  /** Common questions users ask about this topic */
   questions?: readonly string[];
-
+  /** Key facts this page covers */
   facts?: readonly string[];
-
+  /** Target audience for this page */
   audience?: readonly string[];
-
+  /** Search intent: what users are looking for */
   searchIntent?:
     | "informational"
     | "commercial"
     | "transactional"
     | "navigational";
-
+  /** Is this content fresh/recent? */
   freshness?: boolean;
-
+  /** AI-friendly summary (1-2 sentences) */
   aiSummary?: string;
-
+  /** Citation sources for claims */
   citations?: readonly string[];
+  /** Related topics to explore */
+  relatedTopics?: readonly string[];
 }
 
 /* -------------------------------------------------------------------------- */
@@ -293,9 +231,9 @@ export interface SitemapEntry {
 /* -------------------------------------------------------------------------- */
 
 export interface RouteSEO {
-  route: string;
+  route: RoutePath;
 
-  seo: PageSEO;
+  seo: PageSEOData;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -305,8 +243,6 @@ export interface RouteSEO {
 export interface GlobalSEO {
   site: SiteConfig;
 
-  verification?: VerificationSEO;
-
   robots: RobotsSEO;
 
   openGraph: OpenGraphSEO;
@@ -314,8 +250,6 @@ export interface GlobalSEO {
   twitter: TwitterSEO;
 
   schema: readonly JsonLdSchema[];
-
-  alternates?: readonly AlternateLanguage[];
 
   sitemap?: readonly SitemapEntry[];
 }
